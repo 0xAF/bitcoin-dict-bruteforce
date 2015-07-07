@@ -23,8 +23,8 @@ source ./bitcoin.sh
 bitcoin_check() {
 	k=$(echo -n $1 | sha256sum | cut -c -64)
 	q=`newBitcoinKey "0x$k" | tail -2 | cut -d ':' -f 2| tr -d ' '`
-	z=$(echo $q | cut -d ' ' -f 1)
-	p=$(echo $q | cut -d ' ' -f 2)
+	z=$(echo $q | cut -d ' ' -f 2)
+	p=$(echo $q | cut -d ' ' -f 1)
 	x=$(curl http://blockexplorer.com/q/getreceivedbyaddress/$z 2>/dev/null)
 	echo "${x/\*/\\\*}" "[$1] http://blockexplorer.com/address/$z [privkey:$p]" | tee -a bitcoin.log
 	if [[ "$x" != "0" && "$x" != "ERROR: invalid address" ]]; then
