@@ -1,1 +1,6 @@
 bitcoin_keys
+test.dict
+dicts/
+last.session
+bitcoin.log
+found.log
